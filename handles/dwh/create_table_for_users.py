@@ -1,32 +1,28 @@
-from pathlib import Path
-
-from dotenv import load_dotenv
-from os import getenv
-
 from handles.oltp.execute_custom_query import execute_custom_query
+from handles.oltp.get_postgres_credentials import get_postgres_rec
 
 if __name__ == "__main__":
-
     # Получаем путь до файла с реквизитами подключения к PG
-    BASE_DIR = Path(__file__).resolve().parents[2]
-    env_path = BASE_DIR / "config" / ".env"
+    pg_credentials = get_postgres_rec()
 
-    # Получаем реквизиты
-    load_dotenv(dotenv_path=env_path)
-
-    db_name = getenv("POSTGRES_DB")
-    host = getenv("POSTGRES_HOST")
-    user = getenv("POSTGRES_USER")
-    password = getenv("POSTGRES_PASSWORD")
-    port = getenv("POSTGRES_PORT")
-
+    # Создаем схему
     execute_custom_query(
-        db_name=db_name,
-        host=host,
-        user=user,
-        password=password,
-        port=port,
+        db_name=pg_credentials["db_name"],
+        port=pg_credentials["port"],
+        host=pg_credentials["host"],
+        user=pg_credentials["user"],
+        password=pg_credentials["password"],
         query = """
-            CREATE SCHEMA IF NOT EXISTS users;
+            CREATE TABLE IF NOT EXISTS ods.users (
+                user_id bigserial PRIMARY KEY,
+                created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                username TEXT NULL,
+                password TEXT NULL,
+                firstname TEXT NULL,
+                lastname TEXT NULL,
+                email TEXT NULL,
+                country TEXT NULL,
+                city TEXT NULL
+            );
         """
     )

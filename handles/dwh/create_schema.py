@@ -1,5 +1,5 @@
 from handles.oltp.execute_custom_query import execute_custom_query
-from handles.oltp.get_postgres_rec import get_postgres_rec
+from handles.oltp.get_postgres_credentials import get_postgres_rec
 
 if __name__ == "__main__":
 
