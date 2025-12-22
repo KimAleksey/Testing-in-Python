@@ -4,9 +4,9 @@ import logging
 
 from typing import Any
 
-from utils_for_orchestration.utils_dict import generate_fields_from_dict
-from utils_for_orchestration.utils_dict import generate_fields_from_dict_in_placeholder
-from utils_for_orchestration.utils_str import generate_insert_into_for_row
+from dags.utils_for_orchestration.utils_dict import generate_fields_from_dict
+from dags.utils_for_orchestration.utils_dict import generate_fields_from_dict_in_placeholder
+from dags.utils_for_orchestration.utils_str import generate_insert_into_for_row
 
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 

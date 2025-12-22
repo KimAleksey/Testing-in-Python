@@ -24,7 +24,7 @@ class TestTransformNestedFields:
                         'password': 'success',
                     },
 
-                }
+                },
             ],
         'info': {
             'seed': 'fa68cbd068c14000',
