@@ -1,5 +1,7 @@
 import pytest
+
 from unittest.mock import MagicMock, patch
+
 from dags.utils_for_orchestration.utils_api import get_data_from_api
 
 

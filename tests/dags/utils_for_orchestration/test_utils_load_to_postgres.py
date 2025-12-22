@@ -1,7 +1,5 @@
 import logging
 
-import pytest
-
 from airflow.models.connection import Connection
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
