@@ -1,5 +1,7 @@
 import pytest
 
+from copy import deepcopy
+
 from dags.utils_for_orchestration.utils_transform import transform_nested_fields
 
 
@@ -53,31 +55,45 @@ class TestTransformNestedFields:
             transform_nested_fields(data)
 
     def test_transform_nested_fields_results_no_login(self):
-        data = TestTransformNestedFields.CORRECT_DATA.copy()
+        data = deepcopy(TestTransformNestedFields.CORRECT_DATA)
         data["results"][0].pop('login')
         with pytest.raises(KeyError):
             transform_nested_fields(data)
 
     def test_transform_nested_fields_results_no_name(self):
-        data = TestTransformNestedFields.CORRECT_DATA.copy()
+        data = deepcopy(TestTransformNestedFields.CORRECT_DATA)
         data["results"][0].pop('name')
         with pytest.raises(KeyError):
             transform_nested_fields(data)
 
     def test_transform_nested_fields_results_no_location(self):
-        data = TestTransformNestedFields.CORRECT_DATA.copy()
+        data = deepcopy(TestTransformNestedFields.CORRECT_DATA)
         data["results"][0].pop('location')
         with pytest.raises(KeyError):
             transform_nested_fields(data)
 
     def test_transform_nested_fields_results_no_email(self):
-        data = TestTransformNestedFields.CORRECT_DATA.copy()
+        data = deepcopy(TestTransformNestedFields.CORRECT_DATA)
         data["results"][0].pop('email')
         with pytest.raises(KeyError):
             transform_nested_fields(data)
 
     def test_transform_nested_fields_results_no_first(self):
-        data = TestTransformNestedFields.CORRECT_DATA.copy()
+        data = deepcopy(TestTransformNestedFields.CORRECT_DATA)
         data["results"][0]["name"].pop('first')
         with pytest.raises(KeyError):
             transform_nested_fields(data)
+
+    def test_transform_nested_fields_correct_data(self):
+        data = deepcopy(TestTransformNestedFields.CORRECT_DATA)
+        result = transform_nested_fields(data)
+
+        assert result == {
+            'username': 'angryladybug995',
+            'password': 'success',
+            'firstname': 'Ellen',
+            'lastname': 'Tuomala',
+            'email': 'ellen.tuomala@example.com',
+            'country': 'Finland',
+            'city': 'Nykarleby'
+        }
