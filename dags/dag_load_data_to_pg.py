@@ -73,7 +73,7 @@ with DAG(
     description=SHORT_DESCRIPTION,
     schedule_interval='@daily',
     start_date=pendulum.datetime(2025, 12, 1),
-    catchup=False,
+    catchup=True,
     default_args=default_args,
     tags=TAGS,
     max_active_runs=1,
