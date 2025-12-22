@@ -15,6 +15,7 @@ dependencies = [
 ]
 
 [tool.pytest.ini_options]
+pythonpath = ["dags"]
 markers = [
     "unit: mark test as unit test",
     "integration: mark test as integration test",
