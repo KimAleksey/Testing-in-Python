@@ -15,12 +15,15 @@ OWNER = "kim-av"
 DAG_ID = "dag_for_loading_data_to_pg"
 TAGS = ["example", "etl", "tests"]
 
+# Длинное описание
 LONG_DESCRIPTION = """
 DAG for practice with testing in Python and DAGs.
 """
 
+# Короткое описание
 SHORT_DESCRIPTION = "Пример реализации DAG для ETL с использованием тестирования."
 
+# Аргументы по-умолчанию
 default_args = {
     "owner": OWNER,
     "depends_on_past": False,
