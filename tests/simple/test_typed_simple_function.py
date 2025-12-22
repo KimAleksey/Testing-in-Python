@@ -1,6 +1,6 @@
 import pytest
 
-from main.main import return_only_int
+from simple.main import return_only_int
 
 class TestReturnOnlyInt:
     @pytest.mark.unit

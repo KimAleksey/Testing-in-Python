@@ -1,4 +1,4 @@
-from main.main import return_value
+from simple.main import return_value
 
 def test_simple_function_int():
     assert return_value(1) == 1
