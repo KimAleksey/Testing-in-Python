@@ -101,6 +101,8 @@ services:
       retries: 5
       start_period: 5s
     restart: always
+    ports:
+      - "5432:5432"
 
   redis:
     # Redis is limited to 7.2-bookworm due to licencing change
@@ -298,6 +300,18 @@ services:
       POSTGRES_DB: demo
     ports:
       - "5433:5432"
+
+  # My PostgresDB
+  my_db_test:
+    image: postgres:16
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: demo
+    ports:
+      - "5434:5432"
 
 volumes:
   postgres-db-volume:

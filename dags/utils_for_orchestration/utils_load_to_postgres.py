@@ -1,3 +1,5 @@
+import airflow.models.connection
+
 import logging
 
 from typing import Any
@@ -9,7 +11,7 @@ from utils_for_orchestration.utils_str import generate_insert_into_for_row
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 def save_dict_to_postgres(
-        conn_id: str | None = "my_db",
+        conn_id: str | airflow.models.connection.Connection | None = "my_db",
         schema: str | None = "public",
         table: str | None = None,
         dict_row: dict[str, Any] | None = None,
@@ -22,11 +24,14 @@ def save_dict_to_postgres(
     :param table: Имя таблицы, в которую загружаем
     :param dict_row: Произвольный словарь, который представляет собой строку для записи
     """
-    # Подключение к БД
-    try:
-        pg_hook = PostgresHook(conn_id)
-    except Exception as e:
-        raise RuntimeError(f"Could not connect to Postgres.") from e
+    # Подключение к БД. Если передается airflow.connection, то значит запускается интеграционное тестирование
+    if isinstance(conn_id, airflow.models.connection.Connection):
+        pg_hook = PostgresHook(postgres_conn_id=None, connection=conn_id)
+    else:
+        try:
+            pg_hook = PostgresHook(conn_id)
+        except Exception as e:
+            raise RuntimeError(f"Could not connect to Postgres.") from e
 
     if not dict_row:
         raise ValueError("dict_row не может быть пустым")
