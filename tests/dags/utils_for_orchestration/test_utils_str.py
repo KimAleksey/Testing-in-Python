@@ -1,6 +1,6 @@
 import pytest
 
-from dags.utils_for_orchestration.utils_str import generate_insert_into_for_row
+from utils_for_orchestration.utils_str import generate_insert_into_for_row
 
 class TestGenerateInsertIntoForRow:
     def test_valid_input(self):

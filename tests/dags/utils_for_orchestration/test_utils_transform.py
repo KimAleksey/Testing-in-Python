@@ -2,7 +2,7 @@ import pytest
 
 from copy import deepcopy
 
-from dags.utils_for_orchestration.utils_transform import transform_nested_fields
+from utils_for_orchestration.utils_transform import transform_nested_fields
 
 
 class TestTransformNestedFields:
