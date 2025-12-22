@@ -39,9 +39,9 @@ with DAG(
     )
 
 
-    end_taks = EmptyOperator(
+    end_task = EmptyOperator(
         task_id="end",
         dag=dag
     )
 
-    start_task >> end_taks
+    start_task >> end_task
