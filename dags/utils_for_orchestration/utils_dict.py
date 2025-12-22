@@ -1,6 +1,6 @@
 from typing import Any
 
-def generate_fields_from_dict(dict_row: dict[str, Any]) -> str:
+def generate_fields_from_dict(dict_row: dict[str, Any] | None) -> str:
     """
     Генерирует строку с колонками для встравки
 
@@ -9,10 +9,12 @@ def generate_fields_from_dict(dict_row: dict[str, Any]) -> str:
     """
     if not dict_row:
         return ""
+    if not isinstance(dict_row, dict):
+        raise TypeError("dict_row must be a dict")
     return ", ".join(dict_row.keys())
 
 
-def generate_fields_from_dict_in_placeholder(dict_row: dict[str, Any]) -> str:
+def generate_fields_from_dict_in_placeholder(dict_row: dict[str, Any] | None) -> str:
     """
     Функция, которая формирует строку, в которой каждое поле обернуто в placeholder.
 
@@ -21,4 +23,6 @@ def generate_fields_from_dict_in_placeholder(dict_row: dict[str, Any]) -> str:
     """
     if not dict_row:
         return ""
+    if not isinstance(dict_row, dict):
+        raise TypeError("dict_row must be a dict")
     return ", ".join([f"%({k})s" for k in dict_row.keys()])
