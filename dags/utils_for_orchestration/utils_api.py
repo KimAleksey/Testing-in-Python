@@ -1,7 +1,9 @@
+from typing import Any
+
 import requests
 
 
-def get_data_from_api(url: str, time_out: int = 600):
+def get_data_from_api(url: str, time_out: int = 600) -> dict[Any, Any]:
     """
     Get data from API. URL must be non-empty string.
     :param url: URL to get data from.
