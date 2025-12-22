@@ -74,7 +74,7 @@ def load(**context) -> None:
 with DAG(
     dag_id=DAG_ID,
     description=SHORT_DESCRIPTION,
-    schedule_interval='@daily',
+    schedule_interval="0 10 * * *",
     start_date=pendulum.datetime(2025, 12, 1),
     catchup=True,
     default_args=default_args,
