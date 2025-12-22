@@ -5,9 +5,9 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 from handles.oltp.execute_custom_query import execute_custom_query
 
-from dags.utils_for_orchestration.utils_load_to_postgres import save_dict_to_postgres
-from dags.utils_for_orchestration.utils_api import get_data_from_api
-from dags.utils_for_orchestration.utils_transform import transform_nested_fields
+from utils_for_orchestration.utils_load_to_postgres import save_dict_to_postgres
+from utils_for_orchestration.utils_api import get_data_from_api
+from utils_for_orchestration.utils_transform import transform_nested_fields
 
 class TestSaveDictToPostgres:
     @staticmethod
